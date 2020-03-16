@@ -692,3 +692,4 @@ I am confused about the [official english documentation](https://docs.scipy.org/
 ```python
 df_test.iloc[0]
 ```
+conda有两个环境：base and myRenv3_6。base是基本环境，装有R-3.5.1;myRenv3_6是装有R-3.6.1的环境，因为cicero package的某些dependency只存在于R-3.6，所以特意创建myRenv3_6(~/anaconda3/envs/myRenv3_6)。在base环境执行conda install -c bioconda bioconductor-rhdf5 bioconductor-rhdf5lib -y后，自动将R-3.5升级到R3.6，在Executing the transaction的时候，通过关闭PuTTy窗口强制结束进程，导致conda指令error -bash: conda: command not found。 可以看见~/anaconda3/bin中，部分xx变成了xx.c~,比如：conda变成conda.c~。更改文件名去掉后缀后，仍然解决不了问题，于是重装anaconda。myRenv3_6中R-3.6.1已经安装好cicero package, 为了避免在新安装的anaconda3下重新创建一个类似环境，可以先保存整个myRenv3_6: mv ~/anaconda3/envs/myRenv3_6 ~/。 在安装好新的anaconda3之后，将保存的环境放到evns路径下： mv ~/myRenv3_6 ~/anaconda3/envs。 之后可以正常调用myRenv3_6环境：conda activate myRenv3_6。环境下的R和其中的cicero package可以正常使用。
